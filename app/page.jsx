@@ -1,3 +1,4 @@
+import DocumentSection from "@/components/DocumentSection";
 import HeroBanner from "@/components/HeroBanner";
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
     <>
       <div className="fixed">Navbar </div>
       <HeroBanner />
+      <DocumentSection />
     </>
   );
 }
