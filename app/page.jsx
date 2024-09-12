@@ -1,10 +1,11 @@
 import DocumentSection from "@/components/DocumentSection";
 import HeroBanner from "@/components/HeroBanner";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
     <>
-      <div className="fixed">Navbar </div>
+      <Navbar />
       <HeroBanner />
       <DocumentSection />
     </>
