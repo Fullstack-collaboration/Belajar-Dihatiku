@@ -17,7 +17,7 @@ const DocumentSection = () => {
             title="Pendidikan dan Pengajaran"
             description={"Tempat pendidikan berkualitas tinggi bertemu pengajaran inovatif. Bergabunglah untuk meraih masa depan cerah melalui pengalaman belajar yang menginspirasi."}
             color={"#2F327D"}
-            link={"/documents/pengabdian"}
+            link={"/documents/pendidikan"}
             logo={<IoDocumentTextOutline size={35} className="text-white" />}
           />
           <CardDocument
@@ -31,7 +31,7 @@ const DocumentSection = () => {
             title="Penelitian dan Pengembangan"
             description={"inovasi adalah kunci, kita menjelajahi batas ilmu pengetahuan. Bergabunglah untuk menciptakan solusi inovatif yang membawa perubahan nyata."}
             color={"#F48C06"}
-            link={"/documents/pengabdian"}
+            link={"/documents/penelitian"}
             logo={<FaCalendarAlt size={35} className="text-white" />}
           />
         </div>
