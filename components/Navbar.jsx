@@ -62,7 +62,10 @@ const Navbar = () => {
             ) : (
               <div className='flex justify-end gap-3'>
                 <ClerkLoaded>
-                  <UserButton className="size-5"/>
+                  <div className='flex items-center gap-4 cursor-pointer'>
+                    {/* <p className='font-semibold'>{user?.fullName}</p> */}
+                    <UserButton className="size-10"/>
+                  </div>
                 </ClerkLoaded>
                 <ClerkLoading>
                   <Loader2 className='animate-spin' />
