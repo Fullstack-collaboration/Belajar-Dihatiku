@@ -5,29 +5,29 @@ import { FaCalendarAlt } from "react-icons/fa";
 const DocumentSection = () => {
   return (
     <>
-      <main className="w-11/12 lg:w-10/12 mx-auto">
+      <main className="w-11/12 lg:w-10/12 mx-auto my-20">
         <div className="my-12">
-          <h1 className="text-4xl lg:text-4xl font-bold text-center mt-7 mb-3 lg:mb-4">
+          <h1 data-aos="fade-up" className="text-4xl lg:text-4xl font-bold text-center mt-7 mb-3 lg:mb-4">
             <span className="text-[#2F327D]">Tridharma</span> belajardihatiku<span className="text-[#4AC3BF]">.com</span>
           </h1>
-          <p className="text-[#696984] font-extralight text-center text-base">Tridarma Perguruan Tinggi berkomitmen pada tiga pilar utama: Pendidikan dan Pengajaran, Pengabdian Masyarakat, serta Penelitian dan Pengembangan</p>
+          <p data-aos="fade-left" className="text-[#696984] font-extralight text-center text-base">Tridarma Perguruan Tinggi berkomitmen pada tiga pilar utama: Pendidikan dan Pengajaran, Pengabdian Masyarakat, serta Penelitian dan Pengembangan</p>
         </div>
         <div className="mt-16 flex flex-wrap justify-around gap-16 lg:gap-3">
-          <CardDocument
+          <CardDocument data-aos="fade-up"
             title="Pendidikan dan Pengajaran"
             description={"Tempat pendidikan berkualitas tinggi bertemu pengajaran inovatif. Bergabunglah untuk meraih masa depan cerah melalui pengalaman belajar yang menginspirasi."}
             color={"#2F327D"}
             link={"/documents/pendidikan"}
             logo={<IoDocumentTextOutline size={35} className="text-white" />}
           />
-          <CardDocument
+          <CardDocument data-aos="zoom-out-up"
             title="Pengabdian Masyarakat"
             description={"Program Pengabdian Masyarakat kami dan jadilah agen perubahan yang membawa dampak positif dalam masyarakat."}
             color={"#29B9E7"}
             link={"/documents/pengabdian"}
             logo={<IoPeople size={35} className="text-white" />}
           />
-          <CardDocument
+          <CardDocument data-aos="flip-right"
             title="Penelitian dan Pengembangan"
             description={"inovasi adalah kunci, kita menjelajahi batas ilmu pengetahuan. Bergabunglah untuk menciptakan solusi inovatif yang membawa perubahan nyata."}
             color={"#F48C06"}
@@ -35,6 +35,9 @@ const DocumentSection = () => {
             logo={<FaCalendarAlt size={35} className="text-white" />}
           />
         </div>
+          {/* <div>
+            <iframe src="https://www.instagram.com/p/C_fPamoSaD2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" className="w-full h-screen overflow-hidden" frameborder="0"></iframe>
+          </div> */}
       </main>
     </>
   );

@@ -1,11 +1,18 @@
+'use client'
 import Image from "next/image"
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const HeroBanner = () => {
+
+    
+
     return (
         <>
             <div className="bg-gradient-to-b from-[#E2F6FC] from-80% to-[#FEFFFF]">
                 <div className=" w-11/12 lg:w-10/12 mx-auto pt-7 grid grid-cols-1 md:grid-cols-2">
-                    <div className="h-60 md:h-full flex text-center md:text-start justify-center flex-col md:mx-7 lg:mx-8 gap-4 lg:gap-6">
+                    <div className="h-60 md:h-full flex text-center md:text-start justify-center flex-col md:mx-7 lg:mx-8 gap-4 lg:gap-6" data-aos="fade-left">
                         <h1 className="text-4xl lg:text-6xl font-bold"> Selamat <span className="text-[#4AC3BF]"> Datang </span></h1>
                         <h2 className="text-4xl lg:text-5xl font-semibold">belajardihatiku<span className="text-[#4AC3BF]">.com</span></h2>
                         <div>
@@ -13,7 +20,7 @@ const HeroBanner = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-center p-4 lg:p-0 mx-auto lg:ml-auto lg:mr-0 ">
+                    <div className="flex items-center justify-center p-4 lg:p-0 mx-auto lg:ml-auto lg:mr-0 "data-aos="fade-right" >
                         <Image src="/herodihatiku.svg" alt="Belajardihatiku.com" width={500} height={500} className="ml-auto mx-5 my-10" />
                     </div>
                 </div>
