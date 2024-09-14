@@ -15,9 +15,9 @@ const Navbar = () => {
   const router = useRouter()
 
   const navData = [
-    {href: "/pengabdian", label: "Pengabdian"},
-    {href: "/publikasi", label: "Publikasi"},
-    {href: "/aplikasi", label: "Aplikasi"},
+    {href: "/documents/pendidikan", label: "Pendidikan"},
+    {href: "/documents/penelitian", label: "Penelitian"},
+    {href: "/documents/pengabdian", label: "Pengabdian"},
   ]
 
   const {isLoaded, isSignedIn, user} = useUser()
