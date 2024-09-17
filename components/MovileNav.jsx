@@ -1,4 +1,4 @@
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Button } from "./ui/button"
 import Link from "next/link"
 import { CiLogin } from "react-icons/ci"
@@ -8,6 +8,7 @@ import { Loader2 } from "lucide-react"
 
 const MovileNav = () => {
     const pathName = usePathname()
+    const router = useRouter
 
     const {isLoaded, isSignedIn, user} = useUser()
     console.log({isLoaded, isSignedIn, user})
@@ -16,10 +17,10 @@ const MovileNav = () => {
         <>
             <div className="flex flex-col justify-between w-full h-full" > 
               <div className='flex flex-col items-start justify-start'>
-                <div className='cursor-pointer text-2xl mb-4 font-bold'>belajardihatiku<span className='text-cyan-600'>.com</span></div>
-                <div className={`w-full py-2 px-3 ${pathName == '/pengabdian' ? "text-cyan-600 shadow" : ""} hover:text-cyan-500 hover:shadow rounded-md font-semibold cursor-pointer`}>Pengabdian</div>
-                <div className={`w-full py-2 px-3 ${pathName == '/publication' ? "text-cyan-600 shadow" : ""} hover:text-cyan-500 hover:shadow rounded-md font-semibold cursor-pointer`}>Publikasi</div>
-                <div className={`w-full py-2 px-3 ${pathName == '/application' ? "text-cyan-600 shadow" : ""} hover:text-cyan-500 hover:shadow rounded-md font-semibold cursor-pointer`}>Aplikasi</div>
+                <div onClick={router.push("/")} className='cursor-pointer text-2xl mb-4 font-bold'>belajardihatiku<span className='text-cyan-600'>.com</span></div>
+                <div onClick={router.push("/documents/pendidikan")} className={`w-full py-2 px-3 ${pathName == '/documents/pendidikan' ? "text-cyan-600 shadow" : ""} hover:text-cyan-500 hover:shadow rounded-md font-semibold cursor-pointer`}>Pendidikan</div>
+                <div onClick={router.push("/documents/penelitian")} className={`w-full py-2 px-3 ${pathName == '/documents/penelitian' ? "text-cyan-600 shadow" : ""} hover:text-cyan-500 hover:shadow rounded-md font-semibold cursor-pointer`}>Penelitian</div>
+                <div onClick={router.push("/documents/pengabdian")} className={`w-full py-2 px-3 ${pathName == '/documents/pengabdian' ? "text-cyan-600 shadow" : ""} hover:text-cyan-500 hover:shadow rounded-md font-semibold cursor-pointer`}>Pengabdian</div>
               </div>
               <div className='flex flex-col justify-start items-start  w-full font-semibold'>
                 {!isSignedIn ? (

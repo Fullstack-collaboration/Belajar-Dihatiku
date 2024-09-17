@@ -59,7 +59,7 @@ const DocumentPage = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="max-w-6xl mx-auto mt-16 p-10 rounded-md bg-white shadow-[0_4px_20px_0_rgba(135,206,235,0.6)]">
         <h1 className="flex justify-center text-2xl font-bold text-black mb-8">{document.title}</h1>
 
