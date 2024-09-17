@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react"
 
 const MovileNav = () => {
     const pathName = usePathname()
-    const router = useRouter
+    const router = useRouter()
 
     const {isLoaded, isSignedIn, user} = useUser()
     console.log({isLoaded, isSignedIn, user})
