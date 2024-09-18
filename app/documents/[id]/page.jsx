@@ -32,7 +32,7 @@ const DocumentPage = () => {
     };
 
     fetchData();
-  }, [pathname]);
+  }, []);
 
   const id = pathname.split('/').pop();
 

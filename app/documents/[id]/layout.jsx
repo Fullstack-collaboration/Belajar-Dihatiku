@@ -5,11 +5,11 @@ const Layout = ({ children }) => {
 
   return (
     <div>
-      <Navbar />
-        <div className="min-h-screen">
+      {/* <Navbar /> */}
+        <div className="min-h-[70vh]">
             {children}
         </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
