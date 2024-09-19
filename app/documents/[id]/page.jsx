@@ -57,16 +57,16 @@ const DocumentPage = () => {
 
   const document = documents[id];
 
-  if (!document) {
-    return (
-      <div className='h-screen flex flex-col justify-center items-center'>
-        {/* <Loader2 className="size-10 animate-spin" /> */}
-        <div className="rounded bg-red-300 border-2 border-red-400 flex items-center justify-center px-20 py-5">
-          <p className='text-lg font-semibold lg:font-bold lg:text-xl text-red-900'>Error Fetching backend!</p>
-        </div>
-      </div>  
-    )
-  }
+  // if (!document) {
+  //   return (
+  //     <div className='h-screen flex flex-col justify-center items-center'>
+  //       {/* <Loader2 className="size-10 animate-spin" /> */}
+  //       <div className="rounded bg-red-300 border-2 border-red-400 flex items-center justify-center px-20 py-5">
+  //         <p className='text-lg font-semibold lg:font-bold lg:text-xl text-red-900'>Error Fetching backend!</p>
+  //       </div>
+  //     </div>  
+  //   )
+  // }
 
   if (isLoading) {
     return (
@@ -103,13 +103,18 @@ const DocumentPage = () => {
             </tr>
           </thead>
           <tbody>
+            {documentData.length === 0 && (
+              <tr>
+                <td colSpan="4" className="py-2 px-4 border-b border-gray-300 text-center">Tidak ada data</td>
+              </tr>
+            )}
             {documentData.map((item, index) => (
               <tr key={index}>
                 <td className="py-2 px-4 border-b border-gray-300">{index + 1}</td>
-                <td className="py-2 px-4 border-b border-gray-300">{item.namaBerkas}</td>
-                <td className="py-2 px-4 border-b border-gray-300">{item.tahun}</td>
+                <td className="py-2 px-4 border-b border-gray-300">{item.title}</td>
+                <td className="py-2 px-4 border-b border-gray-300">{item.year}</td>
                 <td className="py-2 px-4 border-b border-gray-300 text-center">
-                  <a href={item.dokumenUrl} target="_blank" className="flex justify-center items-center text-red-500">
+                  <a href={item.link} target="_blank" className="flex justify-center items-center text-red-500">
                     <FaFilePdf size={20} />
                   </a>
                 </td>

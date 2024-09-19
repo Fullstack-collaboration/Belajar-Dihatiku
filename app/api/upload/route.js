@@ -2,10 +2,6 @@ import { prisma } from "@/lib/prisma-client";
 import { R2Uploader } from "@/lib/s3-client";
 
 export async function POST(req) {
-    // const data = await req.body
-
-    // console.log({data})
-
     const formData = await req.formData()
     const name = formData.get('name')
     const uploader = formData.get('uploader')
@@ -19,8 +15,6 @@ export async function POST(req) {
     const fileExtension = splitFileName[splitFileName.length - 1]
     const nameFileWithoutSpace = splitFileName[0].split(' ').join('-')
 
-    console.log(fileExtension)
-
     const file = {
         buffer: buffer,
         // Bucket: R2_BUCKET_NAME,
@@ -30,7 +24,6 @@ export async function POST(req) {
         nameWithoutSpace: nameFileWithoutSpace
         // body: data
     }
-
     const link = await R2Uploader(file)
 
     try {
@@ -43,28 +36,10 @@ export async function POST(req) {
                 year: year
             }
         })
-
         console.log(res)
-
         return Response.json({message: "Success", res, link})
     } catch (error) {
         console.log(error)
         return Response.json({error})
     }
-
-    // console.log({fileTest})
-    return Response.json({ name, uploader, myfile, link})
-
-
-
-    // console.log({fileTest})
-
-    let dataFile = data.file
-
-    
-
-    console.log({dataFile})
-
-
-    return Response.json({dataFile})
 }
