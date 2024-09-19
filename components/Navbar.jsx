@@ -21,11 +21,11 @@ const Navbar = () => {
   ]
 
   const {isLoaded, isSignedIn, user} = useUser()
-  console.log({isLoaded, isSignedIn, user})
+  // console.log({isLoaded, isSignedIn, user})
   
   const pathName = usePathname()
 
-  console.log({pathName})
+  // console.log({pathName})
 
   return (
     <nav className='bg-[#E2F6FC]' >
@@ -77,7 +77,7 @@ const Navbar = () => {
       <div>
         <Sheet>
         <div className='lg:hidden sticky mx-auto w-11/12 flex justify-between items-center py-4'>
-          <h1 className='text-xl ml-10 font-bold'>belajardihatiku<span className='text-cyan-600'>.com</span></h1>
+          <Link className='text-xl ml-10 font-bold' href={"/"}>belajardihatiku<span className='text-cyan-600'>.com</span></Link>
           <SheetTrigger> 
             <div variant="primary" className='cursor-pointer hover:rotate-90 transition hover:text-cyan-600'>
               <RxHamburgerMenu  size={25}/>
