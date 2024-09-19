@@ -21,11 +21,11 @@ const Navbar = () => {
   ]
 
   const {isLoaded, isSignedIn, user} = useUser()
-  console.log({isLoaded, isSignedIn, user})
+  // console.log({isLoaded, isSignedIn, user})
   
   const pathName = usePathname()
 
-  console.log({pathName})
+  // console.log({pathName})
 
   return (
     <nav className='bg-[#E2F6FC]' >
