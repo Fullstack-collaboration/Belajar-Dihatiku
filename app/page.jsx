@@ -1,4 +1,5 @@
 'use client'
+import About from "@/components/About";
 import DocumentSection from "@/components/DocumentSection";
 import Footer from "@/components/Footer";
 import HeroBanner from "@/components/HeroBanner";
@@ -25,6 +26,7 @@ export default function Home() {
       {/* <Navbar /> */}
       <HeroBanner />
       <DocumentSection />
+      <About />
       {/* <Footer /> */}
     </>
   );
