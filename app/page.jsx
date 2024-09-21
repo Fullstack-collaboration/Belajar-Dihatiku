@@ -22,10 +22,10 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <HeroBanner />
       <DocumentSection />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
