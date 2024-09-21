@@ -1,5 +1,6 @@
 'use client'
 import About from "@/components/About";
+import CommunitySection from "@/components/CommunitySection";
 import DocumentSection from "@/components/DocumentSection";
 import EducationSection from "@/components/EducationSection";
 import Footer from "@/components/Footer";
@@ -31,6 +32,7 @@ export default function Home() {
       <About />
       <EducationSection />
       <ResearchSection />
+      <CommunitySection />
       {/* <Footer /> */}
     </>
   );
