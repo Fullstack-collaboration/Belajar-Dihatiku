@@ -2,10 +2,10 @@
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { FaFilePdf } from "react-icons/fa";
+import { FaFilePdf, FaEdit, FaTrash } from "react-icons/fa"; // Tambahkan ikon edit dan hapus
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
-import { FaSearch } from 'react-icons/fa'; // Import icon magnifying glass
+import { FaSearch } from 'react-icons/fa';
 
 const DocumentPage = () => {
   const router = useRouter();
@@ -14,9 +14,9 @@ const DocumentPage = () => {
   const [documentData, setDocumentData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState(''); // State for search query
-  const [filteredData, setFilteredData] = useState([]); // State for filtered data
-  const [triggerSearch, setTriggerSearch] = useState(false); // State for triggering search
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  const [triggerSearch, setTriggerSearch] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,7 +29,7 @@ const DocumentPage = () => {
         if (!response.ok) throw new Error('Gagal mengambil data dari API');
         const data = await response.json();
         setDocumentData(data.data);
-        setFilteredData(data.data); // Initialize filtered data
+        setFilteredData(data.data);
         setIsLoading(false);
       } catch (error) {
         setError(error.message);
@@ -48,7 +48,23 @@ const DocumentPage = () => {
         doc.year.toString().includes(lowercasedQuery)
     );
     setFilteredData(filtered);
-    setTriggerSearch(true); // Set trigger to true after clicking search
+    setTriggerSearch(true);
+  };
+
+  // Fungsi untuk menangani penghapusan dokumen
+  const handleDelete = async (id) => {
+    if (confirm('Apakah Anda yakin ingin menghapus dokumen ini?')) {
+      try {
+        const response = await fetch(`/api/documents/${id}`, {
+          method: 'DELETE',
+        });
+        if (!response.ok) throw new Error('Gagal menghapus dokumen');
+        setDocumentData((prev) => prev.filter((doc) => doc.id !== id));
+        setFilteredData((prev) => prev.filter((doc) => doc.id !== id));
+      } catch (error) {
+        alert(error.message);
+      }
+    }
   };
 
   const id = pathname.split('/').pop();
@@ -87,7 +103,7 @@ const DocumentPage = () => {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto mt-16 p-10 rounded-md bg-white shadow-[0_4px_20px_0_rgba(135,206,235,0.6)] relative">
+      <div className="max-w-6xl mx-auto mt-16 mb-10 p-10 rounded-md bg-white shadow-[0_4px_20px_0_rgba(135,206,235,0.6)] relative">
         <h1 className="flex justify-center text-2xl font-bold text-black mb-8">{document.title}</h1>
 
         {/* Search bar dan tombol upload */}
@@ -120,12 +136,13 @@ const DocumentPage = () => {
               <th className="py-2 px-4 border-b-2 border-gray-300 text-left">Nama Berkas</th>
               <th className="py-2 px-4 border-b-2 border-gray-300 text-left">Tahun</th>
               <th className="py-2 px-4 border-b-2 border-gray-300 text-center">Dokumen</th>
+              <th className="py-2 px-4 border-b-2 border-gray-300 text-center">Aksi</th> {/* Kolom untuk aksi */}
             </tr>
           </thead>
           <tbody>
             {triggerSearch && filteredData.length === 0 && (
               <tr>
-                <td colSpan="4" className="py-2 px-4 border-b border-gray-300 text-center">Tidak ada data</td>
+                <td colSpan="5" className="py-2 px-4 border-b border-gray-300 text-center">Tidak ada data</td>
               </tr>
             )}
             {filteredData.map((item, index) => (
@@ -137,6 +154,20 @@ const DocumentPage = () => {
                   <a href={item.link} target="_blank" className="flex justify-center items-center text-red-500">
                     <FaFilePdf size={20} />
                   </a>
+                </td>
+                <td className="py-2 px-4 border-b border-gray-300 text-center">
+                  <button
+                    onClick={() => router.push(`/edit/${item.id}`)}
+                    className="text-blue-500 hover:text-blue-700 mr-3"
+                  >
+                    <FaEdit size={16} />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <FaTrash size={16} />
+                  </button>
                 </td>
               </tr>
             ))}
