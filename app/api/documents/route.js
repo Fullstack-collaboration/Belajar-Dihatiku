@@ -1,52 +1,98 @@
 import { prisma } from "@/lib/prisma-client";
+import { R2Uploader } from "@/lib/s3-client";
 
+// GET - Mengambil dokumen berdasarkan kategori dan ID
 export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+  const filter = searchParams.get('filter'); 
 
-    const { searchParams } = new URL(req.url);
-    const filter = searchParams.get('filter');
+  try {
+    const [category, id] = filter.split('/'); 
 
-    try {
-      const documents = await prisma.documents.findMany({
-        where: {
-          category: filter
-        }
+    if (id) {
+
+      const document = await prisma.documents.findUnique({
+        where: { id: parseInt(id) }, 
       });
 
-      return Response.json({ data: documents, error: false });
-    } catch (error) {
-      return Response.json({ data: null, error: true, message: error.message });
+      if (!document) {
+        return Response.json({ data: null, error: true, message: "Document not found" });
+      }
+
+      return Response.json({ data: document, error: false });
     }
-    // if (filter && documents[filter]) {
-    //   return Response.json({ data: documents[filter], error: false });
-    // }
-  
-    // return Response.json({ data: documents, error: false });
+
+
+    const documents = await prisma.documents.findMany({
+      where: { category: category },
+    });
+
+    return Response.json({ data: documents, error: false });
+  } catch (error) {
+    return Response.json({ data: null, error: true, message: error.message });
   }
-  
-  export async function POST(req) {
-    const body = await req.json();
-  
-    const filter = body.filter; 
-  
-    const documents = {
-      pendidikan: [
-        { namaBerkas: "SK.131231", tahun: 2021, dokumenUrl: "/documents/pendidikan/SK.131231.pdf", format: "PDF" },
-        { namaBerkas: "SK.145678", tahun: 2022, dokumenUrl: "/documents/pendidikan/SK.145678.pdf", format: "PDF" }
-      ],
-      pengabdian: [
-        { namaBerkas: "SK.223344", tahun: 2020, dokumenUrl: "/documents/pengabdian/SK.223344.pdf", format: "PDF" },
-        { namaBerkas: "SK.556677", tahun: 2023, dokumenUrl: "/documents/pengabdian/SK.556677.pdf", format: "PDF" }
-      ],
-      penelitian: [
-        { namaBerkas: "SK.334455", tahun: 2019, dokumenUrl: "/documents/penelitian/SK.334455.pdf", format: "PDF" },
-        { namaBerkas: "SK.667788", tahun: 2022, dokumenUrl: "/documents/penelitian/SK.667788.pdf", format: "PDF" }
-      ]
+}
+
+// POST - Mengedit dokumen
+export async function POST(req) {
+  const formData = await req.formData();
+  const id = formData.get('id');
+  const name = formData.get('name');
+  const uploader = formData.get('uploader');
+  const myfile = formData.get('file'); 
+  const category = formData.get('category');
+  const year = formData.get('year');
+  let link; 
+
+  if (myfile) {
+    const buffer = Buffer.from(await myfile.arrayBuffer());
+    const splitFileName = myfile.name.split('.');
+    const fileExtension = splitFileName[splitFileName.length - 1];
+    const nameFileWithoutSpace = splitFileName[0].split(' ').join('-');
+
+    const file = {
+      buffer: buffer,
+      name: myfile.name,
+      type: myfile.type,
+      extension: fileExtension,
+      nameWithoutSpace: nameFileWithoutSpace,
     };
-  
-    if (filter && documents[filter]) {
-      return Response.json({ data: documents[filter], error: false });
-    }
-  
-    return Response.json({ data: null, error: true, message: "Filter tidak valid atau tidak ditemukan." });
+
+    link = await R2Uploader(file); 
   }
-  
+
+  try {
+    const updatedDocument = await prisma.documents.update({
+      where: { id: parseInt(id) }, 
+      data: {
+        title: name,
+        link: link || undefined, 
+        category: category,
+        author: uploader,
+        year: year,
+      },
+    });
+
+    return Response.json({ message: "Success", updatedDocument });
+  } catch (error) {
+    console.log(error);
+    return Response.json({ error: true, message: error.message });
+  }
+}
+
+// DELETE - Menghapus dokumen
+export async function DELETE(req) {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get('id'); 
+
+  try {
+    const deletedDocument = await prisma.documents.delete({
+      where: { id: parseInt(id) }, 
+    });
+
+    return Response.json({ message: "Document deleted successfully", deletedDocument });
+  } catch (error) {
+    console.log(error);
+    return Response.json({ error: true, message: error.message });
+  }
+}
