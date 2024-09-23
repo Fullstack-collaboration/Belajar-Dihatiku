@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
@@ -41,7 +42,7 @@ const EditPage = () => {
             setYear(document.year);
             setCategory(document.category);
             setUploader(document.author);
-            setPreviewUrl(document.url); 
+            setPreviewUrl(document.link); 
           } else {
             throw new Error("Dokumen tidak ditemukan");
           }
@@ -188,7 +189,7 @@ const EditPage = () => {
               {previewUrl.endsWith(".pdf") ? (
                 <embed src={previewUrl} type="application/pdf" width="100%" height="200px" />
               ) : (
-                <img src={previewUrl} alt="Preview Document" className="w-24 h-24 object-contain" />
+                <Image height={700} width={700} src={previewUrl} alt="Preview Document" className="w-24 h-24 object-contain" />
               )}
             </div>
           </div>

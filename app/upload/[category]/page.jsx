@@ -7,6 +7,7 @@ import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { set } from "date-fns";
 import { Loader2 } from "lucide-react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
@@ -22,6 +23,8 @@ const UploadPage = () => {
   const [isLoading, setIsloading] = useState(false);
   const [percentage, setPercentage] = useState(0);
   const [error, setError] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState(""); 
+  const [newPreviewUrl, setNewPreviewUrl] = useState(""); 
 
   const { toast } = useToast();
 
@@ -93,6 +96,8 @@ const UploadPage = () => {
 
   const handleFileChange = (file) => {
     setFile(file);
+    const objectUrl = URL.createObjectURL(file)
+    setPreviewUrl(objectUrl)
   };
 
   const handleYear = (e) => {
@@ -151,6 +156,18 @@ const UploadPage = () => {
             <Label htmlFor="year">Tahun</Label>
             <Input required onChange={handleYear} value={year} type="number" min={1900} max={new Date().getFullYear()} name="year" id="year" placeholder="Masukkan tahun berkas" />
           </div>
+          {previewUrl && (
+          <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto">
+            <Label>Preview Dokumen Saat Ini</Label>
+            <div className="relative">
+              {previewUrl.endsWith(".pdf") ? (
+                <embed src={previewUrl} type="application/pdf" width="100%" height="200px" />
+              ) : (
+                <Image height={700} width={700} src={previewUrl} alt="Preview Document" className="w-24 h-24 object-contain" />
+              )}
+            </div>
+          </div>
+        )}
           {/* <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto">
                         <Label htmlFor="title">Nama Berkas</Label>
                         <Input type="text" id="title" placeholder="Masukkan nama berkas" />
