@@ -28,7 +28,7 @@ const HeroBanner = () => {
                         <h1 className="text-4xl lg:text-6xl font-bold"> Selamat <span className="text-[#4AC3BF]"> Datang </span></h1>
                         <h2 className="text-4xl lg:text-5xl font-semibold">belajardihatiku<span className="text-[#4AC3BF]">.com</span></h2>
                         <div>
-                            <Link href="#more"  onClick={handleScroll} className="px-9 py-3 mt-2 bg-[#4AC3BF] text-slate-100 hover:text-slate-50 hover:bg-opacity-80 hover:scale-105 transition w-auto rounded-full font-semibold text-center">Lihat lebih lengkap</Link>
+                            <Link href="#more"  onClick={handleScroll} className="px-9 py-3 mt-5 inline-block bg-[#4AC3BF] text-slate-100 hover:text-slate-50 hover:bg-opacity-80 hover:scale-105 transition w-auto rounded-full font-semibold text-center">Lihat lebih lengkap</Link>
                         </div>
                     </div>
 
