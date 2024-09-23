@@ -4,7 +4,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 
 const DocumentSection = () => {
   return (
-    <>
+    <div id="more" >
       <main className="w-11/12 lg:w-10/12 mx-auto my-20">
         <div className="my-12">
           <h1 data-aos="fade-up" className="text-4xl lg:text-4xl font-bold text-center mt-7 mb-3 lg:mb-4">
@@ -39,7 +39,7 @@ const DocumentSection = () => {
             <iframe src="https://www.instagram.com/p/C_fPamoSaD2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" className="w-full h-screen overflow-hidden" frameborder="0"></iframe>
           </div> */}
       </main>
-    </>
+    </div>
   );
 };
 

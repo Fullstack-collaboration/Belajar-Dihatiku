@@ -28,7 +28,7 @@ export default function Home() {
     <>
       {/* <Navbar /> */}
       <HeroBanner />
-      <DocumentSection />
+      <DocumentSection  />
       <About />
       <EducationSection />
       <ResearchSection />
