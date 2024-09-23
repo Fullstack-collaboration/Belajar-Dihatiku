@@ -204,7 +204,7 @@ const EditPage = () => {
                 {newPreviewUrl.endsWith(".pdf") ? (
                   <embed src={newPreviewUrl} type="application/pdf" width="100%" height="200px" />
                 ) : (
-                  <img src={newPreviewUrl} alt="New Preview Document" className="w-25 h-25 object-contain" />
+                  <Image height={700} width={700} src={newPreviewUrl} alt="New Preview Document" className="w-25 h-25 object-contain" />
                 )}
               </div>
             </div>
