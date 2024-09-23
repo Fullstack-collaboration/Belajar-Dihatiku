@@ -6,6 +6,7 @@ import { FaFilePdf, FaEdit, FaTrash } from "react-icons/fa"; // Tambahkan ikon e
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { FaSearch } from 'react-icons/fa';
+import { FaFileImage } from "react-icons/fa";
 
 const DocumentPage = () => {
   const router = useRouter();
@@ -101,6 +102,15 @@ const DocumentPage = () => {
     );
   }
 
+  // add extention file form link to data
+  filteredData?.map((item) => {
+    const parsedExt = item.link.split('.')
+    const ext = parsedExt[parsedExt.length - 1]
+    item.ext = ext
+  });
+
+  console.log(filteredData)
+
   return (
     <>
       <div className="max-w-6xl mx-auto mt-16 mb-10 p-10 rounded-md bg-white shadow-[0_4px_20px_0_rgba(135,206,235,0.6)] relative">
@@ -145,14 +155,16 @@ const DocumentPage = () => {
                 <td colSpan="5" className="py-2 px-4 border-b border-gray-300 text-center">Tidak ada data</td>
               </tr>
             )}
-            {filteredData.map((item, index) => (
+              {console.log(filteredData)}
+            {filteredData?.map((item, index) => (
+              // filter extensi file untuk mengatur logo download
               <tr key={index}>
                 <td className="py-2 px-4 border-b border-gray-300">{index + 1}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{item.title}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{item.year}</td>
                 <td className="py-2 px-4 border-b border-gray-300 text-center">
                   <a href={item.link} target="_blank" className="flex justify-center items-center text-red-500">
-                    <FaFilePdf size={20} />
+                    {item.ext === "pdf" ? <FaFilePdf size={20} /> : <FaFileImage size={20} /> }
                   </a>
                 </td>
                 <td className="py-2 px-4 border-b border-gray-300 text-center">
