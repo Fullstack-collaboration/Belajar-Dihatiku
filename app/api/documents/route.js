@@ -90,6 +90,8 @@ export async function DELETE(req) {
       where: { id: parseInt(id) }, 
     });
 
+    console.log(deletedDocument)
+
     return Response.json({ message: "Document deleted successfully", deletedDocument });
   } catch (error) {
     console.log(error);

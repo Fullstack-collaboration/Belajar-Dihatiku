@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { FaSearch } from 'react-icons/fa';
 import { FaFileImage } from "react-icons/fa";
+import { toast } from '@/hooks/use-toast';
 
 const DocumentPage = () => {
   const router = useRouter();
@@ -20,10 +21,6 @@ const DocumentPage = () => {
   const [triggerSearch, setTriggerSearch] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const id = pathname.split('/').pop();
-
     const fetchData = async () => {
       try {
         const response = await fetch(`/api/documents?filter=${id}`);
@@ -37,6 +34,10 @@ const DocumentPage = () => {
         setIsLoading(false);
       }
     };
+    window.scrollTo(0, 0);
+
+    const id = pathname.split('/').pop();
+
 
     fetchData();
   }, [pathname]);
@@ -56,14 +57,32 @@ const DocumentPage = () => {
   const handleDelete = async (id) => {
     if (confirm('Apakah Anda yakin ingin menghapus dokumen ini?')) {
       try {
-        const response = await fetch(`/api/documents/${id}`, {
+        const response = await fetch(`/api/documents?id=${id}`, {
           method: 'DELETE',
         });
-        if (!response.ok) throw new Error('Gagal menghapus dokumen');
+        if (!response.ok) {
+          return toast({
+            title: 'Gagal menghapus dokumen',
+            description: "Gagal menghapus dokumen",
+            variant: 'destructive',
+          })
+          // throw new Error('Gagal menghapus dokumen')
+        };
+
+        toast({
+          title: 'Berhasil menghapus dokumen',
+          description: 'Dokumen berhasil di hapus',
+        })
         setDocumentData((prev) => prev.filter((doc) => doc.id !== id));
         setFilteredData((prev) => prev.filter((doc) => doc.id !== id));
       } catch (error) {
-        alert(error.message);
+        // console.log(error);
+        toast({
+          title: "Gagal Menghapus",
+          description: error?.message,
+          variant: "destructive",
+        })
+        // alert(error.message);
       }
     }
   };
