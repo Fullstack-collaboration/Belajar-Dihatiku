@@ -1,0 +1,5 @@
+[build]
+  publish = "/opt/build/repo/.next"
+  command = "npm run build"
+  # Disable cache for Prisma Client dependencies
+  environment = { PRISMA_TELEMETRY_DISABLED = "1" }
