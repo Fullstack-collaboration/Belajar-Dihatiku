@@ -32,15 +32,18 @@ const Footer = () => {
 
     return (
         <>
-            <footer className="w-full bg-[#42A7C3] h-80 pt-3 flex flex-col items-center justify-around gap-4">
-                <div>
-                    <div className="tracking-wide text-center flex justify-center items-center flex-wrap gap-4">
-                        <Image src="/footerhatiku.svg" alt="belajardihatiku.com" width={260} height={70} className="md:border-r-2 md:pr-3" />
-                        <h1 className="text-white font-thin text-base md:text-lg px-2 ">Dr. Dedy Hartama, S.T, M.Kom</h1>
+            <footer className="w-full bg-[#42A7C3] h-80 pt-1 md:pt-3 flex flex-col items-center justify-around gap-2">
+                <div className=" w-11/12 lg:w-10/12 mx-auto">
+                    <div className="tracking-wide text-center flex justify-center items-center flex-wrap gap-2 md:gap-4">
+                    <div data-aos="fade-up" className="size-[50%] lg:size-[60%] flex items-center justify-center">
+                        <Image src="/footerhatiku.svg" layout="responsive" width={550} height={550} alt="Education" />
+                    </div>
+                        {/* <Image src="/footerhatiku.svg" alt="belajardihatiku.com" width={260} height={70} className="md:border-r-2 md:pr-3" /> */}
+                        <h1 className="text-white font-thin text-sm md:text-lg px-2 ">Dr. Dedy Hartama, S.T, M.Kom</h1>
                     </div>
                 </div>
                 <div className="tracking-wide">
-                    <p className="text-slate-50 font-extralight text-base text-center tracking-widest">Hubungi Saya</p>
+                    <p className="text-slate-50 font-extralight text-sm md:text-base text-center tracking-widest">Hubungi Saya</p>
                     <form onSubmit={handleSubmit} className="mt-2 flex gap-3">
                         <input 
                             type="email" 
@@ -58,13 +61,13 @@ const Footer = () => {
                     </form>
                 </div>
                 <div>
-                    <div className="flex justify-center items-center gap-6 text-white text-base mb-1 tracking-wider">
+                    <div className="mx-auto flex justify-center text-center text-sm items-center gap-2 text-white mb-2 tracking-wider">
                         <div>Careers</div>
-                        <div className="border-x-2 px-6">Privacy Policy</div>
+                        <div className="border-x-2 px-2 md:px-4">Privacy Policy</div>
                         <div>Terms & Condition</div>
                     </div>
-                    <div className="flex justify-center items-center mt-2">
-                        <p className="text-center text-white font-extralight text-sm tracking-widest">© 2024 belajardihatiku.com</p>
+                    <div className="flex justify-center items-center  border-t-[1.5px] p-2 mt-4 ">
+                        <p className="text-center text-white text-xs font-extralight tracking-widest">© 2024 belajardihatiku.com</p>
                     </div>
                 </div>
             </footer>

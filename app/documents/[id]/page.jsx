@@ -136,11 +136,11 @@ const DocumentPage = () => {
         <h1 className="flex justify-center text-2xl font-bold text-black mb-8">{document.title}</h1>
 
         {/* Search bar dan tombol upload */}
-        <div className="flex justify-end items-center mb-5">
-          <div className="flex items-center space-x-2">
+        <div className="flex justify-end flex-wrap items-center mb-5">
+          <div className="flex items-center  justify-between flex-wrap gap-3 space-x-2">
             <input
               type="text"
-              className="border px-4 py-2 rounded-md shadow-sm"
+              className="border w-4/5 md:w-auto py-2 md:px-4 rounded-md shadow-sm"
               placeholder="Cari dokumen..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -158,7 +158,9 @@ const DocumentPage = () => {
         </div>
 
         {/* Tabel dokumen */}
-        <table className="w-full bg-white border border-gray-300">
+        <div className='overflow-x-auto'>
+
+        <table className="w-full bg-white border border-gray-300 overflow-auto">
           <thead>
             <tr>
               <th className="py-2 px-4 border-b-2 border-gray-300 text-left">No</th>
@@ -204,6 +206,7 @@ const DocumentPage = () => {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
     </>
   );
