@@ -3,10 +3,22 @@ import Image from "next/image"
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import Link from "next/link";
 
 const HeroBanner = () => {
 
-    
+    const handleScroll = (e) => {
+        e.preventDefault();
+        const target = document.getElementById("more");
+        const offset = -100; // Offset untuk scroll (misal: 100px ke atas)
+        if (target) {
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset + offset;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+            });
+        }
+    }
 
     return (
         <>
@@ -16,7 +28,7 @@ const HeroBanner = () => {
                         <h1 className="text-4xl lg:text-6xl font-bold"> Selamat <span className="text-[#4AC3BF]"> Datang </span></h1>
                         <h2 className="text-4xl lg:text-5xl font-semibold">belajardihatiku<span className="text-[#4AC3BF]">.com</span></h2>
                         <div>
-                            <button className="px-9 py-3 mt-2 bg-[#4AC3BF] text-slate-100 hover:text-slate-50 hover:bg-opacity-80 hover:scale-105 transition w-auto rounded-full font-semibold text-center">Lihat lebih lengkap</button>
+                            <Link href="#more"  onClick={handleScroll} className="px-9 py-3 mt-5 inline-block bg-[#4AC3BF] text-slate-100 hover:text-slate-50 hover:bg-opacity-80 hover:scale-105 transition w-auto rounded-full font-semibold text-center">Lihat lebih lengkap</Link>
                         </div>
                     </div>
 

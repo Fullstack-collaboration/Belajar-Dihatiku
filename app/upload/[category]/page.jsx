@@ -72,6 +72,10 @@ const UploadPage = () => {
       setInterval(() => {
         setIsloading(false)
       }, 200)
+      setName("");
+      setYear("");
+      setFile(null);
+      
     } catch (error) {
       console.log(error);
       toast({

@@ -12,7 +12,7 @@ const CardDocument = ({ link, title, description, logo, color }) => {
         <h1 className="text-2xl md:text-xl font-bold py-1" style={{ color: color }}>
           {title}
         </h1>
-        <p className="text-[#696984] font-extralight text-center text-base md:text-base">{description}</p>
+        <p className="text-[#696984] font-extralight text-justify text-base md:text-base">{description}</p>
         {/* <Link href={link}>
           <div className="px-7 py-4 rounded-full font-semibold text-white mt-3" style={{ backgroundColor: color }}>
             Cek Dokumen
