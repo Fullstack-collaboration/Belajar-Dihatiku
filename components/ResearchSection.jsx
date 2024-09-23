@@ -8,7 +8,7 @@ const ResearchSection = () => {
         <>
             <section className="grid grid-cols-1 lg:grid-cols-2 w-11/12 lg:w-10/12 mx-auto my-20 gap-4">
                 <div className="mx-auto order-2 lg:order-last flex items-center justify-center">
-                    <div data-aos="fade-left" className="size-[85%] lg:size-[80%] flex items-center justify-center">
+                    <div data-aos="fade-up" className="size-[85%] lg:size-[80%] flex items-center justify-center">
                         <Image src="/research.svg" layout="responsive" width={550} height={550} alt="Education" />
                     </div>
                 </div>
