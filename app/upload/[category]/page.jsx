@@ -36,7 +36,7 @@ const UploadPage = () => {
   useEffect(() => {
     setCategory(params.category);
     setUploader(user?.fullName);
-  }, [params]);
+  }, [params, user]);
 
   const handlePostData = async () => {
     const formData = new FormData();
