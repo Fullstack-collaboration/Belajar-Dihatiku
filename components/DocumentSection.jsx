@@ -10,7 +10,7 @@ const DocumentSection = () => {
           <h1 data-aos="fade-up" className="text-4xl lg:text-4xl font-bold text-center mt-7 mb-3 lg:mb-4">
             <span className="text-[#2F327D]">Tridharma</span> belajardihatiku<span className="text-[#4AC3BF]">.com</span>
           </h1>
-          <p data-aos="fade-left" className="text-[#696984] font-extralight text-center text-base">Tridarma Perguruan Tinggi berkomitmen pada tiga pilar utama: Pendidikan dan Pengajaran, Pengabdian Masyarakat, serta Penelitian dan Pengembangan</p>
+          <p data-aos="fade-up" className="text-[#696984] font-extralight text-center text-base">Tridarma Perguruan Tinggi berkomitmen pada tiga pilar utama: Pendidikan dan Pengajaran, Pengabdian Masyarakat, serta Penelitian dan Pengembangan</p>
         </div>
         <div className="mt-16 flex flex-wrap justify-around gap-16 lg:gap-3">
           <CardDocument data-aos="fade-up"

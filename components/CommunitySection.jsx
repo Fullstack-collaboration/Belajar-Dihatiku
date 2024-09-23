@@ -6,9 +6,9 @@ import Link from "next/link"
 const CommunitySection = () => {
     return (
         <>
-            <section  className="grid grid-cols-1 lg:grid-cols-2 w-11/12 lg:w-10/12 mx-auto my-20 gap-4">
+            <section  className="grid grid-cols-1 lg:grid-cols-2 w-11/12 lg:w-10/12 mx-auto my-10 md:my-20 gap-4">
                 <div className="mx-auto order-2 lg:order-1 flex items-center justify-center">
-                    <div data-aos="fade-right" className="size-[65%] lg:size-[85%] flex items-center justify-center">
+                    <div data-aos="fade-up" className="size-[80%] lg:size-[85%] flex items-center justify-center">
                         <Image src="/pengabdian.svg" layout="responsive" width={550} height={550} alt="Education" />
                     </div>
                 </div>
