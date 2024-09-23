@@ -28,11 +28,11 @@ const Navbar = () => {
   // console.log({pathName})
 
   return (
-    <nav className='bg-[#E2F6FC]' >
+    <nav className='bg-[#E2F6FC] bg-opacity-70 backdrop-blur z-50 sticky top-0' >
       <div className='hidden lg:w-10/12 mx-auto lg:flex justify-between items-center py-4 sticky'>
           {/* <h1 className='text-xl ml-10 font-bold'>belajardihatiku<span className='text-cyan-600'>.com</span></h1> */}
           <Link href={"/"}  className='cursor-pointer hover:scale-105 transition'>
-            <Image src={"/navhatiku.svg"} alt='belajardihatiku.com' width={240} height={30} />
+            <Image src={"/navhatiku.svg"} alt='belajardihatiku.com' width={170} height={20} />
           </Link>
           <div className='flex gap-8 space-x-8 justify-center flex-grow'>
               {
