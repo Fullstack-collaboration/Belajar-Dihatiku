@@ -33,7 +33,7 @@ const MovileNav = () => {
               <div className='flex flex-col justify-start items-start  w-full font-semibold'>
                 {!isSignedIn ? (
                   <>
-                    <Link variant="semi" href={"/sign-up"} className="flex items-center hover:shadow-cyan-300 rounded px-3 hover:bg-slate-300/60 gap-3 w-full border-t-2 py-2" > <IoPersonAddOutline  size={25} /> Register</Link>
+                    {/* <Link variant="semi" href={"/sign-up"} className="flex items-center hover:shadow-cyan-300 rounded px-3 hover:bg-slate-300/60 gap-3 w-full border-t-2 py-2" > <IoPersonAddOutline  size={25} /> Register</Link> */}
                     <Link variant="primary " href={"/sign-in"} className="flex items-center hover:shadow-cyan-300 rounded px-3 hover:bg-slate-300/60 gap-3 w-full border-t-2 py-2"> <CiLogin size={25}  /> Login</Link>
                   </>
                 ) : (
