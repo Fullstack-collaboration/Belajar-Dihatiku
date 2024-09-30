@@ -54,7 +54,7 @@ const Navbar = () => {
                 </ClerkLoading>
               <ClerkLoaded>
                 <div className='flex justify-end gap-3'>
-                  <Button variant="semi" onClick={() => router.push("/sign-up")} >Register</Button>
+                  {/* <Button variant="semi" onClick={() => router.push("/sign-up")} >Register</Button> */}
                   <Button variant="primary" onClick={() => router.push("/sign-in")}>Login</Button>
                 </div>
               </ClerkLoaded>
