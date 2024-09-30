@@ -8,6 +8,7 @@ import { Loader2 } from 'lucide-react';
 import { FaSearch } from 'react-icons/fa';
 import { FaFileImage } from "react-icons/fa";
 import { toast } from '@/hooks/use-toast';
+import { useAuth, useUser } from '@clerk/nextjs';
 
 const DocumentPage = () => {
   const router = useRouter();
@@ -19,6 +20,9 @@ const DocumentPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [triggerSearch, setTriggerSearch] = useState(false);
+
+  const auth = useAuth()
+  console.log(auth.isSignedIn)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -151,9 +155,12 @@ const DocumentPage = () => {
             >
               <FaSearch className="text-white" />
             </button>
-            <Button onClick={() => router.push(`/upload/${params.id}`)} variant="primary">
+            {auth.isSignedIn && (
+
+              <Button onClick={() => router.push(`/upload/${params.id}`)} variant="primary">
               Upload berkas
             </Button>
+              )}
           </div>
         </div>
 
@@ -166,8 +173,12 @@ const DocumentPage = () => {
               <th className="py-2 px-4 border-b-2 border-gray-300 text-left">No</th>
               <th className="py-2 px-4 border-b-2 border-gray-300 text-left">Nama Berkas</th>
               <th className="py-2 px-4 border-b-2 border-gray-300 text-left">Tahun</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300 text-center">Dokumen</th>
-              <th className="py-2 px-4 border-b-2 border-gray-300 text-center">Aksi</th> {/* Kolom untuk aksi */}
+              {auth.isSignedIn && (
+                <>
+                  <th className="py-2 px-4 border-b-2 border-gray-300 text-center">Dokumen</th>
+                  <th className="py-2 px-4 border-b-2 border-gray-300 text-center">Aksi</th> {/* Kolom untuk aksi */}
+                </>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -183,6 +194,8 @@ const DocumentPage = () => {
                 <td className="py-2 px-4 border-b border-gray-300">{index + 1}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{item.title}</td>
                 <td className="py-2 px-4 border-b border-gray-300">{item.year}</td>
+                {auth.isSignedIn && (
+                  <>
                 <td className="py-2 px-4 border-b border-gray-300 text-center">
                   <a href={item.link} target="_blank" className="flex justify-center items-center text-red-500">
                     {item.ext === "pdf" ? <FaFilePdf size={20} /> : <FaFileImage size={20} /> }
@@ -198,10 +211,12 @@ const DocumentPage = () => {
                   <button
                     onClick={() => handleDelete(item.id)}
                     className="text-red-500 hover:text-red-700"
-                  >
+                    >
                     <FaTrash size={16} />
                   </button>
                 </td>
+                </>
+                )}
               </tr>
             ))}
           </tbody>

@@ -7,7 +7,7 @@ const SignUpPage = () => {
         <>
             <div className="grid grid-cols-1 lg:grid-cols-2 h-screen w-screen">
                 <div className="flex flex-col justify-center items-center">
-                    <h1 className="text-2xl text-center font-bold mb-4 flex items-center gap-2">Welcome to <Image src="/navhatiku.svg" className="animate-bounce" width={250} height={50} alt="belajardihatiku.com" /> </h1> 
+                    <h1 className="text-2xl text-center font-bold mb-4 flex items-center gap-2">Welcome to <Image src="/navhatiku.svg" width={250} height={50} alt="belajardihatiku.com" /> </h1> 
                     <ClerkLoaded>
                         <SignUp />
                     </ClerkLoaded>
